@@ -1,0 +1,150 @@
+:root {
+	--primary: #007595;
+	--primary-foreground: #ecfeff;
+	--secondary: #f4f4f5;
+	--secondary-foreground: #18181b;
+	--muted: #f1f3f3;
+	--muted-foreground: #67787c;
+	--surface: #f9fbfb;
+	--background: #ffffff;
+	--foreground: #090b0c;
+	--destructive: #e7000b;
+	--border: #e3e7e8;
+	--ring: #9ca8ab;
+	--primary-dark: #005f78;
+}
+
+body {
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background: var(--background);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--foreground);
+	font-size: 14px;
+	line-height: 1.6;
+}
+main {
+	width: 72rem;
+	max-width: calc(100% - 2rem);
+	margin: auto;
+	padding: 2rem 1rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	color: var(--foreground);
+	line-height: 1.2;
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+}
+h1 {
+	font-size: 48px;
+	font-weight: 900;
+	letter-spacing: -0.02em;
+	line-height: 1.1;
+}
+h2 {
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+h3 {
+	font-size: 18px;
+	font-weight: 600;
+}
+h4 {
+	font-size: 14px;
+	font-weight: 700;
+}
+h5 {
+	font-size: 12px;
+	font-weight: 600;
+}
+strong,
+b {
+	font-weight: 700;
+}
+a {
+	color: var(--primary);
+}
+a:hover {
+	color: var(--primary-dark);
+}
+p {
+	margin-bottom: 1em;
+}
+.prose p {
+	margin-bottom: 2em;
+}
+textarea {
+	width: 100%;
+	font-size: 12px;
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+}
+input {
+	font-size: 12px;
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+}
+table {
+	width: 100%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+code {
+	padding: 2px 5px;
+	background-color: var(--muted);
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+	font-size: 12px;
+	font-feature-settings: "liga" 1, "calt" 1;
+}
+pre {
+	padding: 1.5em;
+	background-color: var(--muted);
+}
+pre > code {
+	all: unset;
+	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+	font-size: 12px;
+	font-feature-settings: "liga" 1, "calt" 1;
+}
+blockquote {
+	border-left: 4px solid var(--primary);
+	padding: 0 0 0 20px;
+	margin: 0;
+	font-size: 14px;
+	color: var(--muted-foreground);
+}
+hr {
+	border: none;
+	border-top: 1px solid var(--border);
+}
+@media (max-width: 720px) {
+	body {
+		font-size: 12px;
+	}
+	main {
+		padding: 1rem;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
