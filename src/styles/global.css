@@ -26,12 +26,14 @@ body {
 	font-size: 14px;
 	line-height: 1.6;
 }
+
 main {
 	width: 72rem;
 	max-width: calc(100% - 2rem);
 	margin: auto;
 	padding: 2rem 1rem;
 }
+
 h1,
 h2,
 h3,
@@ -43,61 +45,76 @@ h6 {
 	line-height: 1.2;
 	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
+
 h1 {
 	font-size: 48px;
 	font-weight: 900;
 	letter-spacing: -0.02em;
 	line-height: 1.1;
 }
+
 h2 {
 	font-size: 24px;
 	font-weight: 700;
 	letter-spacing: -0.01em;
 }
+
 h3 {
 	font-size: 18px;
 	font-weight: 600;
 }
+
 h4 {
 	font-size: 14px;
 	font-weight: 700;
 }
+
 h5 {
 	font-size: 12px;
 	font-weight: 600;
 }
+
 strong,
 b {
 	font-weight: 700;
 }
+
 a {
 	color: var(--primary);
 }
+
 a:hover {
 	color: var(--primary-dark);
 }
+
 p {
 	margin-bottom: 1em;
 }
+
 .prose p {
 	margin-bottom: 2em;
 }
+
 textarea {
 	width: 100%;
 	font-size: 12px;
 	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
+
 input {
 	font-size: 12px;
 	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
+
 table {
 	width: 100%;
 }
+
 img {
 	max-width: 100%;
 	height: auto;
 }
+
 code {
 	padding: 2px 5px;
 	background-color: var(--muted);
@@ -105,16 +122,19 @@ code {
 	font-size: 12px;
 	font-feature-settings: "liga" 1, "calt" 1;
 }
+
 pre {
 	padding: 1.5em;
 	background-color: var(--muted);
 }
-pre > code {
+
+pre>code {
 	all: unset;
 	font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 	font-size: 12px;
 	font-feature-settings: "liga" 1, "calt" 1;
 }
+
 blockquote {
 	border-left: 4px solid var(--primary);
 	padding: 0 0 0 20px;
@@ -122,14 +142,17 @@ blockquote {
 	font-size: 14px;
 	color: var(--muted-foreground);
 }
+
 hr {
 	border: none;
 	border-top: 1px solid var(--border);
 }
+
 @media (max-width: 720px) {
 	body {
 		font-size: 12px;
 	}
+
 	main {
 		padding: 1rem;
 	}
