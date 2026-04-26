@@ -1,0 +1,112 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	heroImage?: string;
+	profileImage?: string;
+}
+
+const { title, description, heroImage, profileImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style is:global>
+			html,
+			body {
+				height: 100%;
+			}
+			body {
+				display: flex;
+				flex-direction: column;
+				overflow: hidden;
+			}
+		</style>
+		<style>
+			main {
+				flex: 1;
+				min-height: 0;
+				overflow-y: auto;
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.hero-image {
+				width: 100%;
+				position: relative;
+			}
+			.hero-image img.banner {
+				display: block;
+				margin: 0 auto;
+				max-width: 100%;
+			}
+			.profile-avatar {
+				position: absolute;
+				bottom: 1rem;
+				left: calc((100% - 720px) / 2 + 1rem);
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				border: 3px solid var(--background);
+				object-fit: cover;
+				display: block;
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2rem);
+				margin: auto;
+				padding: 2rem 1rem;
+				color: var(--foreground);
+			}
+			.title {
+				margin-bottom: 1em;
+				padding-top: 1em;
+				padding-bottom: 1em;
+				line-height: 1;
+				border-bottom: 1px solid var(--border);
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+				font-size: 24px;
+				font-weight: 700;
+				letter-spacing: -0.01em;
+			}
+			@media (max-width: 760px) {
+				.profile-avatar {
+					left: 1rem;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <img class="banner" width={720} src={heroImage} alt="" />}
+					{profileImage && (
+						<img
+							class="profile-avatar"
+							src={profileImage}
+							alt="Profile picture"
+						/>
+					)}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<h1>{title}</h1>
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
