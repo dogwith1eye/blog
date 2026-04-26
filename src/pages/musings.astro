@@ -325,7 +325,7 @@ const renderedPosts = await Promise.all(
 					const target = document.getElementById(id);
 					if (target) {
 						scrollArea.scrollTo({
-							top: target.offsetTop,
+							top: target.offsetTop - scrollArea.offsetTop,
 							behavior: "smooth",
 						});
 					}
