@@ -238,22 +238,53 @@ const renderedPosts = await Promise.all(
 				font-weight: 700;
 			}
 
+			/* ── Mobile combobox nav ── */
+			.mobile-nav {
+				display: none;
+			}
+			.mobile-nav-inner {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				padding: 0.6rem 1rem;
+				border-bottom: 1px solid var(--border);
+				background: var(--surface);
+				flex-shrink: 0;
+			}
+			.mobile-nav-label {
+				font-size: 11px;
+				font-weight: 500;
+				color: var(--muted-foreground);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				white-space: nowrap;
+			}
+			.mobile-nav-select {
+				flex: 1;
+				font-family: inherit;
+				font-size: 12px;
+				font-weight: 500;
+				background: var(--background);
+				color: var(--foreground);
+				border: 1px solid var(--border);
+				border-radius: 0;
+				padding: 0.35rem 0.5rem;
+				height: 32px;
+			}
+
 			/* ── Mobile ── */
 			@media (max-width: 720px) {
-				body {
-					overflow: auto;
-				}
 				main {
 					flex-direction: column;
-					overflow: visible;
 				}
 				.sidebar {
-					width: 100%;
-					border-right: none;
-					border-bottom: 1px solid var(--border);
+					display: none;
+				}
+				.mobile-nav {
+					display: block;
 				}
 				.scroll-area {
-					overflow-y: visible;
+					overflow-y: auto;
 				}
 				.post-section {
 					padding: 1.5rem 1rem 2rem;
@@ -264,6 +295,18 @@ const renderedPosts = await Promise.all(
 	<body>
 		<Header />
 		<main>
+			<div class="mobile-nav" aria-label="Post navigation">
+				<div class="mobile-nav-inner">
+					<span class="mobile-nav-label">Musings</span>
+					<select class="mobile-nav-select" id="mobile-nav-select">
+						{
+							posts.map((post) => (
+								<option value={post.id}>{post.data.title}</option>
+							))
+						}
+					</select>
+				</div>
+			</div>
 			<nav class="sidebar" aria-label="Posts">
 				<div class="sidebar-header">
 					<span class="sidebar-title">Musings</span>
@@ -317,19 +360,29 @@ const renderedPosts = await Promise.all(
 				document.querySelectorAll<HTMLElement>(".post-section");
 			const navLinks =
 				document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+			const mobileSelect = document.getElementById(
+				"mobile-nav-select",
+			) as HTMLSelectElement;
+
+			function scrollToPost(id: string) {
+				const target = document.getElementById(id);
+				if (target) {
+					scrollArea.scrollTo({
+						top: target.offsetTop - scrollArea.offsetTop,
+						behavior: "smooth",
+					});
+				}
+			}
 
 			navLinks.forEach((link) => {
 				link.addEventListener("click", (e) => {
 					e.preventDefault();
-					const id = link.dataset.target!;
-					const target = document.getElementById(id);
-					if (target) {
-						scrollArea.scrollTo({
-							top: target.offsetTop - scrollArea.offsetTop,
-							behavior: "smooth",
-						});
-					}
+					scrollToPost(link.dataset.target!);
 				});
+			});
+
+			mobileSelect.addEventListener("change", () => {
+				scrollToPost(mobileSelect.value);
 			});
 
 			const observer = new IntersectionObserver(
@@ -343,6 +396,7 @@ const renderedPosts = await Promise.all(
 									link.dataset.target === id,
 								);
 							});
+							mobileSelect.value = id;
 						}
 					});
 				},
